@@ -27,8 +27,12 @@
         "fstream": "cpp",
         "sstream": "cpp",
         "cstddef": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "array": "cpp"
     },
     "cmake.configureOnOpen": true,
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "gnuGlobal.globalExecutable":"C:\\MinGW\\bin\\global.exe",
+    "gnuGlobal.gtagsExecutable":"C:\\MinGW\\bin\\gtags.exe",
+    "codegnuglobal.executable":"C:\\MinGW\\bin\\global.exe"
 }

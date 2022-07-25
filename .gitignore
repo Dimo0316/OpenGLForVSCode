@@ -1,3 +1,6 @@
 *.o
 *.log
 *.exe
+GPATH
+GRTAGS
+GTAGS
