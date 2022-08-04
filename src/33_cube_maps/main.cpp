@@ -76,9 +76,9 @@ int main(int argc, char *argv[])
     glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     glEnable(GL_PROGRAM_POINT_SIZE);
     
-    // glEnable(GL_CULL_FACE);
-    // glCullFace(GL_BACK);
-    // glFrontFace(GL_CCW);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -167,9 +167,11 @@ int main(int argc, char *argv[])
         glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        glDisable(GL_CULL_FACE);
         // 绘制天空盒
         drawSkyBox(skyboxShader, skyboxGeometry, cubemapTexture);
 
+        glEnable(GL_CULL_FACE);
         glBindTexture(GL_TEXTURE_2D, woodMap);
 
         float radius = 5.0f;
