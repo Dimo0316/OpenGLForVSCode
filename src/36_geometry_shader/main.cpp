@@ -97,11 +97,11 @@ int main(int argc, char *argv[])
   // 1.注册窗口变化监听
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
   // 2.鼠标事件
-  glfwSetCursorPosCallback(window, mouse_callback);
+  // glfwSetCursorPosCallback(window, mouse_callback);
   // 3.将鼠标隐藏
   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-  Shader sceneShader("./shader/scene_vert.glsl", "./shader/scene_frag.glsl");
+  Shader sceneShader("./shader/scene_vert.glsl", "./shader/scene_frag.glsl", "./shader/explode_geo.glsl");
   Shader normalShader("./shader/normal_vert.glsl", "./shader/normal_frag.glsl", "./shader/normal_geo.glsl");
 
   PlaneGeometry planeGeometry(1.0, 1.0);          // 面板
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
   float fov = 45.0f;                                                          // 视锥体的角度
   ImVec4 clear_color = ImVec4(25.0 / 255.0, 25.0 / 255.0, 25.0 / 255.0, 1.0); // 25, 25, 25
 
-  Model ourModel("./static/model/walt/WaltHead.obj");
+  Model ourModel("./static/model/nanosuit/nanosuit.obj");
 
   float factor = 0.0;
   while (!glfwWindowShouldClose(window))
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
     glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0, -1.0, 0.0));
-    model = glm::scale(model, glm::vec3(0.03f, 0.03f, 0.03f));
+    model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 
     sceneShader.use();
     sceneShader.setMat4("projection", projection);
@@ -154,20 +154,20 @@ int main(int argc, char *argv[])
 
     ourModel.Draw(sceneShader);
 
-    glBindVertexArray(boxGeometry.VAO);
-    glDrawElements(GL_POINTS, boxGeometry.indices.size(), GL_UNSIGNED_INT, 0);
+    // glBindVertexArray(boxGeometry.VAO);
+    // glDrawElements(GL_POINTS, boxGeometry.indices.size(), GL_UNSIGNED_INT, 0);
 
-    glDrawElements(GL_LINE_LOOP, boxGeometry.indices.size(), GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    // glDrawElements(GL_LINE_LOOP, boxGeometry.indices.size(), GL_UNSIGNED_INT, 0);
+    // glBindVertexArray(0);
 
-    normalShader.use();
-    normalShader.setMat4("projection", projection);
-    normalShader.setMat4("view", view);
-    normalShader.setMat4("model", model);
-    glBindVertexArray(boxGeometry.VAO);
-    glDrawElements(GL_TRIANGLES, boxGeometry.indices.size(), GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
-    ourModel.Draw(normalShader);
+    // normalShader.use();
+    // normalShader.setMat4("projection", projection);
+    // normalShader.setMat4("view", view);
+    // normalShader.setMat4("model", model);
+    // glBindVertexArray(boxGeometry.VAO);
+    // glDrawElements(GL_TRIANGLES, boxGeometry.indices.size(), GL_UNSIGNED_INT, 0);
+    // glBindVertexArray(0);
+    // ourModel.Draw(normalShader);
 
     // 渲染 gui
     ImGui::Render();
