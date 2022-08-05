@@ -167,11 +167,9 @@ int main(int argc, char *argv[])
         glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glDisable(GL_CULL_FACE);
         // 绘制天空盒
         drawSkyBox(skyboxShader, skyboxGeometry, cubemapTexture);
 
-        glEnable(GL_CULL_FACE);
         glBindTexture(GL_TEXTURE_2D, woodMap);
 
         float radius = 5.0f;
@@ -413,6 +411,7 @@ void drawSkyBox(Shader shader, BoxGeometry geometry, unsigned int cubeMap)
 {
     glDepthFunc(GL_LEQUAL);
     glDisable(GL_DEPTH_TEST);
+    glDisable(GL_CULL_FACE);
 
     glm::mat4 view = camera.GetViewMatrix();
     glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
@@ -431,5 +430,6 @@ void drawSkyBox(Shader shader, BoxGeometry geometry, unsigned int cubeMap)
     glBindVertexArray(0);
     glDepthFunc(GL_LESS);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
     view = camera.GetViewMatrix();
 }
