@@ -52,6 +52,7 @@
     },
     "cmake.configureOnOpen": true,
     "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.intelliSenseEngine": "Default",
     "gnuGlobal.globalExecutable":"C:\\MinGW\\bin\\global.exe",
     "gnuGlobal.gtagsExecutable":"C:\\MinGW\\bin\\gtags.exe",
     "codegnuglobal.executable":"C:\\MinGW\\bin\\global.exe"
